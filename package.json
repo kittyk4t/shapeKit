@@ -1,0 +1,23 @@
+{
+  "name": "shapekit",
+  "version": "1.0.0",
+  "description": "basic package for ShapeKit tool",
+  "main": "./_site/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kittyk4t/shapeKit.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kittyk4t/shapeKit/issues"
+  },
+  "homepage": "https://github.com/kittyk4t/shapeKit#readme",
+  "dependencies": {
+    "lite-server": "^2.6.1"
+  }
+}
