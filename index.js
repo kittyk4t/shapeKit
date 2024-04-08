@@ -17,12 +17,6 @@ const setBackgroundImage = (url, canvas) => {
         scaleY: .5,
     });
 }
-var imageURL = "https://s1.1zoom.me/big0/152/Foxes_Black_background_Tongue_Snout_Screaming_523460_1280x853.jpg";
-const canvas = initCanvas("canvas");
-
-setBackgroundImage(imageURL, canvas);
-canvas.renderAll();
-
 const createRect = (canvas) => {
     const newRect = new fabric.Rect({
         width: 100, height: 100, stroke: 'red',
@@ -52,3 +46,65 @@ const createTri = (canvas) => {
     canvas.renderAll()
 
 }
+
+const clearCanvas = (canvas) => {
+    canvas.getObjects().forEach((o) => {
+        if (o !== canvas.setBackgroundImage) {
+            canvas.remove(o)
+        }
+    })
+    canvas.renderAll()
+}
+
+// This code sets the background image
+// var imageURL = "https://s1.1zoom.me/big0/152/Foxes_Black_background_Tongue_Snout_Screaming_523460_1280x853.jpg";
+ const canvas = initCanvas("canvas");
+
+// setBackgroundImage(imageURL, canvas);
+canvas.renderAll();
+
+// Add event listener to file input
+document.getElementById('file-input').addEventListener('change', function(e) {
+    var file = e.target.files[0];
+    var reader = new FileReader();
+    reader.onload = function(event) {
+        var img = new Image();
+        img.onload = function() {
+            var imgInstance = new fabric.Image(img, {
+                left: 100,
+                top: 100,
+                angle: 0,
+                opacity: 0.85
+            });
+            // canvas.add(imgInstance);
+            setBackgroundImage(imgInstance, canvas);
+        }
+        img.src = event.target.result;
+    }
+    reader.readAsDataURL(file);
+    
+});
+
+// this code allows you to add an image on top of the background image
+
+// // Add event listener to file input
+// document.getElementById('image-input').addEventListener('change', function(e) {
+//     var file = e.target.files[0];
+//     var reader = new FileReader();
+//     reader.onload = function(event) {
+//         var img = new Image();
+//         img.onload = function() {
+//             var imgInstance = new fabric.Image(img, {
+//                 left: 100,
+//                 top: 100,
+//                 angle: 30,
+//                 opacity: 0.85
+//             });
+//             canvas.add(imgInstance);
+//         }
+//         img.src = event.target.result;
+//     }
+//     reader.readAsDataURL(file);
+// });
+
+
