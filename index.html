@@ -7,15 +7,21 @@
 <body>
 
 <h1>ShapeKit</h1>
+
+
+<button id = "colorPicker" data-jscolor="">
+	Select color
+</button>
+  <input type="file" id="file-input">
+<!-- <input type="file" id="image-input"> -->
 <canvas id="canvas"></canvas>
 <button onclick="createRect(canvas)">Rectangle</button>
 <button onclick= "createCirc(canvas)">Circle</button>
 <button onclick= "createTri(canvas)">Triangle</button>
 
-<input type="file" id="file-input">
-<!-- <input type="file" id="image-input"> -->
-<canvas id="c"></canvas>
+<button onclick="clearCanvas(canvas)">Clear</button>
 
+<script src="lib/jscolor.js"></script>
 <script src="lib/fabric.min.js"></script>
 <script src="index.js"></script>
 
