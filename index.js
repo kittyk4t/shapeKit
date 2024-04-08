@@ -3,7 +3,7 @@ console.log("index.js");
 
 const initCanvas = (id) => {
     return new fabric.Canvas(id, {
-        width: 500, height: 500,
+        width: 500, height: 500, backgroundColor: "red"
     });
 }
 
@@ -12,7 +12,7 @@ const setBackgroundImage = (url, canvas) => {
         backgroundImageOpacity: 1,
         originX: "left",
         originY: "top",
-        left: 70,
+        left: 0,
         scaleX: .5,
         scaleY: .5,
     });
@@ -39,7 +39,7 @@ const createCirc = (canvas) => {
 
 const createTri = (canvas) => {
     const newTri = new fabric.Triangle({
-        width: 100, height: 100, stroke: 'red',
+        width: 100, height: 100, stroke: canvas.backgroundColor,
         fill: 'rgba(0,0,0,0)'
     })
     canvas.add(newTri)
@@ -55,9 +55,22 @@ const clearCanvas = (canvas) => {
     })
     canvas.renderAll()
 }
+
+const setColorListener = () => {
+    const picker = document.getElementById("colorPicker")
+    picker.addEventListener("change", (event) => {
+        color = event.target.value
+        console.log(color)
+        canvas.backgroundColor = color
+        canvas.renderAll()
+
+    })
+}
 var imageURL = "https://s1.1zoom.me/big0/152/Foxes_Black_background_Tongue_Snout_Screaming_523460_1280x853.jpg";
 const canvas = initCanvas("canvas");
 
+
 setBackgroundImage(imageURL, canvas);
 canvas.renderAll();
+setColorListener();
 
