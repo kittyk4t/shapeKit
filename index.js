@@ -26,7 +26,7 @@ canvas.renderAll();
 const createRect = (canvas) => {
     const newRect = new fabric.Rect({
         width: 100, height: 100, stroke: 'red',
-        fill: 'rgba(0,0,0,0)'
+        fill: 'rgba(0,0,0,0)', top: 0, left: 0
     })
     canvas.add(newRect)
     canvas.renderAll()
