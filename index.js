@@ -34,12 +34,21 @@ const createRect = (canvas) => {
 }
 
 const createCirc = (canvas) => {
-    console.log("circ")
     const newCirc = new fabric.Ellipse({
         rx: 100, ry: 100, stroke: 'red',
         fill: 'rgba(0,0,0,0)'
     })
     canvas.add(newCirc)
+    canvas.renderAll()
+
+}
+
+const createTri = (canvas) => {
+    const newTri = new fabric.Triangle({
+        width: 100, height: 100, stroke: 'red',
+        fill: 'rgba(0,0,0,0)'
+    })
+    canvas.add(newTri)
     canvas.renderAll()
 
 }
