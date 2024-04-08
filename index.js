@@ -17,12 +17,6 @@ const setBackgroundImage = (url, canvas) => {
         scaleY: .5,
     });
 }
-var imageURL = "https://s1.1zoom.me/big0/152/Foxes_Black_background_Tongue_Snout_Screaming_523460_1280x853.jpg";
-const canvas = initCanvas("canvas");
-
-setBackgroundImage(imageURL, canvas);
-canvas.renderAll();
-
 const createRect = (canvas) => {
     const newRect = new fabric.Rect({
         width: 100, height: 100, stroke: 'red',
@@ -52,3 +46,18 @@ const createTri = (canvas) => {
     canvas.renderAll()
 
 }
+
+const clearCanvas = (canvas) => {
+    canvas.getObjects().forEach((o) => {
+        if (o !== canvas.setBackgroundImage) {
+            canvas.remove(o)
+        }
+    })
+    canvas.renderAll()
+}
+var imageURL = "https://s1.1zoom.me/big0/152/Foxes_Black_background_Tongue_Snout_Screaming_523460_1280x853.jpg";
+const canvas = initCanvas("canvas");
+
+setBackgroundImage(imageURL, canvas);
+canvas.renderAll();
+
