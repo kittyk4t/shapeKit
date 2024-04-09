@@ -42,7 +42,7 @@ const createCirc = (canvas) => {
 }
 
 const createTri = (canvas) => {
-    console.log(canvas.freeDrawingBrush.width)
+
     const newTri = new fabric.Triangle({
         width: 100, height: 100, stroke: canvas.freeDrawingBrush.color, strokeWidth: canvas.freeDrawingBrush.width,
         fill: 'rgba(0,0,0,0)'
@@ -113,6 +113,13 @@ const increaseStroke = (canvas) => {
 //     reader.readAsDataURL(file);
 // });
 
+const undoShape = (canvas) => {
+    const objArray = canvas.getObjects()
+    if (objArray[objArray.length - 1] !== canvas.setBackgroundImage) {
+        canvas.remove(objArray[objArray.length - 1])
+    }
+
+}
 
 const setShapeColor = (picker, canvas) => {
     canvas.freeDrawingBrush.color = picker.toRGBAString()
@@ -120,8 +127,7 @@ const setShapeColor = (picker, canvas) => {
 }
 // var imageURL = "https://s1.1zoom.me/big0/152/Foxes_Black_background_Tongue_Snout_Screaming_523460_1280x853.jpg";
 const canvas = initCanvas("canvas");
-//const picker = initColorPicker("#colorPicker")
-//console.log(picker.toRGBAString())
+
 jscolor.trigger('input change');
 
 
