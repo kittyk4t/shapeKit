@@ -1,11 +1,14 @@
-console.log("index.js");
+
 
 
 const initCanvas = (id) => {
-    console.log("this is called")
-    return new fabric.Canvas(id, {
-        width: 700, height: 500
-    });
+    const canvas =
+        new fabric.Canvas(id, {
+            width: 700, height: 500
+        });
+    canvas.freeDrawingBrush.color = "black"
+    canvas.freeDrawingBrush.width = 3
+    return canvas
 
 }
 
@@ -23,7 +26,7 @@ const setBackgroundImage = (url, canvas) => {
 }
 const createRect = (canvas) => {
     const newRect = new fabric.Rect({
-        width: 100, height: 100, stroke: 'red',
+        width: 100, height: 100, stroke: canvas.freeDrawingBrush.color, strokeWidth: canvas.freeDrawingBrush.width,
         fill: 'rgba(0,0,0,0)', top: 0, left: 0
     })
     canvas.add(newRect)
@@ -33,7 +36,7 @@ const createRect = (canvas) => {
 
 const createCirc = (canvas) => {
     const newCirc = new fabric.Ellipse({
-        rx: 100, ry: 100, stroke: 'red',
+        rx: 100, ry: 100, stroke: canvas.freeDrawingBrush.color, strokeWidth: canvas.freeDrawingBrush.width,
         fill: 'rgba(0,0,0,0)'
     })
     canvas.add(newCirc)
@@ -43,7 +46,7 @@ const createCirc = (canvas) => {
 
 const createTri = (canvas) => {
     const newTri = new fabric.Triangle({
-        width: 100, height: 100, stroke: canvas.freeDrawingBrush.color,
+        width: 100, height: 100, stroke: canvas.freeDrawingBrush.color, strokeWidth: canvas.freeDrawingBrush.width,
         fill: 'rgba(0,0,0,0)'
     })
     canvas.add(newTri)
@@ -105,8 +108,8 @@ document.getElementById('file-input').addEventListener('change', function (e) {
 // });
 
 const setColorListener = () => {
-    const picker = document.getElementById("colorPicker")
-    picker.addEventListener("change", (event) => {
+    const picker = document.getElementById('colorPicker')
+    picker.addEventListener('onchange', (event) => {
         console.log(event.target.value)
         newColor = "#" + event.target.value
 
