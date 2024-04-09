@@ -74,7 +74,6 @@ document.getElementById('file-input').addEventListener('change', function (e) {
                 opacity: 0.85
             });
             // canvas.add(imgInstance);
-            console.log("width " + imgInstance.width)
             setBackgroundImage(imgInstance, canvas);
         }
         img.src = event.target.result;
