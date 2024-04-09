@@ -45,6 +45,7 @@ const createCirc = (canvas) => {
 }
 
 const createTri = (canvas) => {
+    console.log(canvas.freeDrawingBrush.width)
     const newTri = new fabric.Triangle({
         width: 100, height: 100, stroke: canvas.freeDrawingBrush.color, strokeWidth: canvas.freeDrawingBrush.width,
         fill: 'rgba(0,0,0,0)'
@@ -85,6 +86,14 @@ document.getElementById('file-input').addEventListener('change', function (e) {
 
 });
 
+const decreaseStroke = (canvas) => {
+    canvas.freeDrawingBrush.width = canvas.freeDrawingBrush.width - 1
+}
+
+const increaseStroke = (canvas) => {
+    canvas.freeDrawingBrush.width = canvas.freeDrawingBrush.width + 1
+
+}
 // this code allows you to add an image on top of the background image
 
 // // Add event listener to file input
