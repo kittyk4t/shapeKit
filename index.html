@@ -9,9 +9,12 @@
 <h1>ShapeKit</h1>
 
 
-<button id = "colorPicker" data-jscolor="{value:'#000000', alpha:1}">
+<button  data-jscolor="{format: 'rgba', closeButton: true, shadow: false, value: '#000000', alpha: 1, onChange: 'setShapeColor(this, canvas)'}">
 	Select color
 </button>
+
+       
+
 <button id ="incStroke" onclick="increaseStroke(canvas)">Increase Stroke Weight</button>
 <button id ="decStroke" onclick="decreaseStroke(canvas)">Decrease Stroke Weight</button>
 <canvas id="canvas"></canvas>
@@ -26,12 +29,7 @@
 <!-- <input type="file" id="image-input"> -->
 
 <script src="lib/jscolor.js"></script>
-<script>
-// These options apply to all color pickers on the page
-jscolor.presets.default = {
-	format:'rgba', closeButton:true, 	shadow:false
-};
-</script>
+
 <script src="lib/fabric.min.js"></script>
 <script src="index.js"></script>
 

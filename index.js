@@ -1,6 +1,3 @@
-
-
-
 const initCanvas = (id) => {
     const canvas =
         new fabric.Canvas(id, {
@@ -116,21 +113,19 @@ const increaseStroke = (canvas) => {
 //     reader.readAsDataURL(file);
 // });
 
-const setColorListener = () => {
-    const picker = document.getElementById('colorPicker')
-    picker.addEventListener('onchange', (event) => {
-        console.log(event.target.value)
-        newColor = "#" + event.target.value
 
-        canvas.freeDrawingBrush.color = color
-        canvas.renderAll()
-
-    })
+const setShapeColor = (picker, canvas) => {
+    canvas.freeDrawingBrush.color = picker.toRGBAString()
+    canvas.renderAll()
 }
 // var imageURL = "https://s1.1zoom.me/big0/152/Foxes_Black_background_Tongue_Snout_Screaming_523460_1280x853.jpg";
 const canvas = initCanvas("canvas");
+//const picker = initColorPicker("#colorPicker")
+//console.log(picker.toRGBAString())
+jscolor.trigger('input change');
+
 
 canvas.renderAll()
-setColorListener()
+
 
 
