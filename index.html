@@ -1,39 +1,185 @@
-<!DOCTYPE html>
-<head>
-     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
+<!-- <!DOCTYPE html>
 <html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>ShapeKit</title>
+</head>
 <body>
 
 <h1>ShapeKit</h1>
 
+<div class="canvas-container">
+    <canvas id="canvas"></canvas>
+</div>
 
-<button  data-jscolor="{format: 'rgba', closeButton: true, shadow: false, value: '#000000', alpha: 1, onChange: 'setShapeColor(this, canvas)'}">
-	Select color
-</button>
 
-       
+<div class="strokeWeight-container">
+  <div>
+    Stroke Weight: <span id="stroke-weight">3</span>
+    <input type="range" id="stroke-weight-slider" min="1" max="20" value="3" oninput="updateStrokeWeight(canvas, this.value)">
+  </div>
+</div>
 
-<button id ="incStroke" onclick="increaseStroke(canvas)">Increase Stroke Weight</button>
-<button id ="decStroke" onclick="decreaseStroke(canvas)">Decrease Stroke Weight</button>
-<canvas id="canvas"></canvas>
-<button onclick="createRect(canvas)">Rectangle</button>
-<button onclick= "createCirc(canvas)">Circle</button>
-<button onclick= "createTri(canvas)">Triangle</button>
-<button onclick= "undoShape(canvas)">Undo Last Shape</button>
-<button onclick="clearCanvas(canvas)">Clear</button>
+<div class="shapeTool-container">
+  <button onclick="createRect(canvas)">Rectangle</button>
+  <button onclick="createCirc(canvas)">Circle</button>
+  <button onclick="createTri(canvas)">Triangle</button>
+  <button data-jscolor="{format: 'rgba', closeButton: true, shadow: false, value: '#000000', alpha: 1, onChange: 'setShapeColor(this, canvas)'}">
+  Select color </button>
+</div>
+
 <button onclick="download(canvas)">Download Canvas</button>
 <button onclick="download_noBackground(canvas)">Download Canvas No Background</button>
 
 
+<div class="controls-container">
+  <button onclick="undoShape(canvas)">Undo Last Shape</button>
+  <button onclick="clearCanvas(canvas)">Clear</button>
   <input type="file" id="file-input">
-<!-- <input type="file" id="image-input"> -->
-
+</div>
 <script src="lib/jscolor.js"></script>
-
 <script src="lib/fabric.min.js"></script>
 <script src="index.js"></script>
 
 </body>
-</html> 
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <title>ShapeKit</title>
+</head>
+<body>
+
+<h1>ShapeKit</h1>
+
+<div class="canvas-container">
+    <canvas id="canvas"></canvas>
+</div>
+
+<div class="strokeWeight-container">
+  <div>
+    Stroke Weight: <span id="stroke-weight">3</span>
+    <input type="range" id="stroke-weight-slider" min="1" max="20" value="3" oninput="updateStrokeWeight(canvas, this.value)">
+  </div>
+</div>
+
+<div class="shapeTool-container">
+  <button onclick="createRect(canvas)">Rectangle</button>
+  <button onclick="createCirc(canvas)">Circle</button>
+  <button onclick="createTri(canvas)">Triangle</button>
+  <button data-jscolor="{format: 'rgba', closeButton: true, shadow: false, value: '#000000', alpha: 1, onChange: 'setShapeColor(this, canvas)'}">
+  Select color </button>
+</div>
+
+<div class="controls-container">
+  <button onclick="undoShape(canvas)">Undo Last Shape</button>
+  <button onclick="clearCanvas(canvas)">Clear</button>
+  <input type="file" id="file-input">
+  <button onclick="openHelpPage()">Help</button>
+</div>
+
+<script src="lib/jscolor.js"></script>
+<script src="lib/fabric.min.js"></script>
+<script src="index.js"></script>
+
+<script>
+const initCanvas = (id) => {
+    const canvas =
+        new fabric.Canvas(id, {
+            width: 700, height: 500
+        });
+    canvas.freeDrawingBrush.color = "black"
+    canvas.freeDrawingBrush.width = 3
+    return canvas
+}
+
+const createRect = (canvas) => {
+    const newRect = new fabric.Rect({
+        width: 100,
+        height: 100,
+        stroke: canvas.freeDrawingBrush.color,
+        strokeWidth: canvas.freeDrawingBrush.width,
+        fill: 'rgba(0,0,0,0)',
+        top: 0,
+        left: 0,
+        selectable: true // Making the shape selectable
+    });
+    canvas.add(newRect);
+    addDeleteButton(canvas, newRect); // Add delete button to the shape
+    canvas.renderAll();
+};
+
+const createCirc = (canvas) => {
+    const newCirc = new fabric.Ellipse({
+        rx: 100,
+        ry: 100,
+        stroke: canvas.freeDrawingBrush.color,
+        strokeWidth: canvas.freeDrawingBrush.width,
+        fill: 'rgba(0,0,0,0)',
+        selectable: true // Making the shape selectable
+    });
+    canvas.add(newCirc);
+    addDeleteButton(canvas, newCirc); // Add delete button to the shape
+    canvas.renderAll();
+};
+
+const createTri = (canvas) => {
+    const newTri = new fabric.Triangle({
+        width: 100,
+        height: 100,
+        stroke: canvas.freeDrawingBrush.color,
+        strokeWidth: canvas.freeDrawingBrush.width,
+        fill: 'rgba(0,0,0,0)',
+        selectable: true // Making the shape selectable
+    });
+    canvas.add(newTri);
+    addDeleteButton(canvas, newTri); // Add delete button to the shape
+    canvas.renderAll();
+};
+
+const addDeleteButton = (canvas, shape) => {
+    const deleteIcon = "data:image/svg+xml,%3C%3Fxml version='1.0' encoding='utf-8'%3F%3E%3C!DOCTYPE svg PUBLIC '-//W3C//DTD SVG 1.1//EN' 'http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd'%3E%3Csvg version='1.1' id='Ebene_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='595.275px' height='595.275px' viewBox='200 215 230 470' xml:space='preserve'%3E%3Ccircle style='fill:%23F44336;' cx='299.76' cy='439.067' r='218.516'/%3E%3Cg%3E%3Crect x='267.162' y='307.978' transform='matrix(0.7071 -0.7071 0.7071 0.7071 -222.6202 340.6915)' style='fill:white;' width='65.545' height='262.18'/%3E%3Crect x='266.988' y='308.153' transform='matrix(0.7071 0.7071 -0.7071 0.7071 398.3889 -83.3116)' style='fill:white;' width='65.544' height='262.179'/%3E%3C/g%3E%3C/svg%3E";
+
+    const img = document.createElement('img');
+    img.src = deleteIcon;
+
+    fabric.Object.prototype.transparentCorners = false;
+    fabric.Object.prototype.cornerColor = 'blue';
+    fabric.Object.prototype.cornerStyle = 'circle';
+
+    shape.setControlsVisibility({ml: false, mt: false, mr: false, mb: false, tl: false, tr: false, bl: false, br: false, mtr: false}); // Hide default controls
+
+    shape.customDeleteControl = new fabric.Control({
+        x: 0.5,
+        y: -0.5,
+        offsetY: 16,
+        cursorStyle: 'pointer',
+        mouseUpHandler: () => {
+            canvas.remove(shape);
+            canvas.requestRenderAll();
+        },
+        render: (ctx, left, top, styleOverride, fabricObject) => {
+            const size = this.cornerSize;
+            ctx.save();
+            ctx.translate(left, top);
+            ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
+            ctx.drawImage(img, -size/2, -size/2, size, size);
+            ctx.restore();
+        },
+        cornerSize: 24
+    });
+
+    shape.__corner = shape.customDeleteControl; // Set the control as corner
+};
+
+</script>
+
+</body>
+</html>
+
