@@ -84,20 +84,15 @@
   <button onclick="openHelpPage()">Help</button>
 </div>
 
+<button onclick="download(canvas)">Download Canvas</button>
+<button onclick="download_noBackground(canvas)">Download Canvas No Background</button>
+
+
 <script src="lib/jscolor.js"></script>
 <script src="lib/fabric.min.js"></script>
 <script src="index.js"></script>
 
 <script>
-const initCanvas = (id) => {
-    const canvas =
-        new fabric.Canvas(id, {
-            width: 700, height: 500
-        });
-    canvas.freeDrawingBrush.color = "black"
-    canvas.freeDrawingBrush.width = 3
-    return canvas
-}
 
 const createRect = (canvas) => {
     const newRect = new fabric.Rect({
