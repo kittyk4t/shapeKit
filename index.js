@@ -45,6 +45,7 @@ const createRect = (canvas) => {
 
 }
 
+
 function renderIcon(icon) {
     return function renderIcon(ctx, left, top, styleOverride, fabricObject) {
       var size = this.cornerSize;
@@ -105,6 +106,47 @@ fabric.Object.prototype.controls.deleteControl = new fabric.Control({
     }
 
   
+
+const download = (canvas) => {
+    const dataURL = canvas.toDataURL({
+        width: canvas.width,
+        height: canvas.height,
+        left: 0,
+        top: 0,
+        format: 'png',
+    });
+    const link = document.createElement('a');
+    link.download = 'image.png';
+    link.href = dataURL;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+
+}
+
+const download_noBackground = (canvas) => {
+    console.log("second one")
+    back = canvas.backgroundImage
+    canvas.backgroundImage = null
+    canvas.renderAll()
+    const dataURL = canvas.toDataURL({
+        width: canvas.width,
+        height: canvas.height,
+        left: 0,
+        top: 0,
+        format: 'png',
+    });
+    const link = document.createElement('a');
+    link.download = 'image.png';
+    link.href = dataURL;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    canvas.backgroundImage = back
+    canvas.renderAll()
+
+}
+
 
 const createCirc = (canvas) => {
     const newCirc = new fabric.Ellipse({
