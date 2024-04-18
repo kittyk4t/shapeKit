@@ -40,39 +40,4 @@ canvas {
     margin-bottom: 20px;
 }
 
-.strokeWeight-container {
-    position: absolute;
-    top: 30%;
-    left: 10px;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-}
 
-
-.shapeTool-container {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-}
-
-.controls-container {
-    position: absolute;
-    top: 75%;
-    left: 10px;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-}
-
-.download-container {
-    position: absolute;
-    top: 10%;
-    left: 10px;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-}
