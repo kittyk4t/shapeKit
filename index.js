@@ -5,6 +5,7 @@ const initCanvas = (id) => {
         });
     canvas.freeDrawingBrush.color = "black"
     canvas.freeDrawingBrush.width = 3
+    canvas.enableGLFiltering = false;
     return canvas
 
 }
@@ -18,7 +19,7 @@ const setBackgroundImage = (url, canvas) => {
         scaleX: canvas.width / url.width,
         scaleY: canvas.height / url.height
     });
-
+    backImage = canvas.backgroundImage
     canvas.renderAll()
 }
 
@@ -53,14 +54,14 @@ const createRect = (canvas) => {
 
 function renderIcon(icon) {
     return function renderIcon(ctx, left, top, styleOverride, fabricObject) {
-      var size = this.cornerSize;
-      ctx.save();
-      ctx.translate(left, top);
-      ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
-      ctx.drawImage(icon, -size/2, -size/2, size, size);
-      ctx.restore();
+        var size = this.cornerSize;
+        ctx.save();
+        ctx.translate(left, top);
+        ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
+        ctx.drawImage(icon, -size / 2, -size / 2, size, size);
+        ctx.restore();
     }
-  }
+}
 
 fabric.Object.prototype.controls.deleteControl = new fabric.Control({
     x: 0.5,
@@ -71,7 +72,7 @@ fabric.Object.prototype.controls.deleteControl = new fabric.Control({
     mouseUpHandler: deleteObject,
     render: renderIcon,
     cornerSize: 24
-    });
+});
 
 // fabric.Object.prototype.controls.clone = new fabric.Control({
 //     x: -0.5,
@@ -83,34 +84,34 @@ fabric.Object.prototype.controls.deleteControl = new fabric.Control({
 //     render: renderIcon(cloneImg),
 //     cornerSize: 24
 // });
-    
-    
-    function deleteObject(eventData, transform) {
-        var target = transform.target;
-        var canvas = target.canvas;
-            canvas.remove(target);
-        canvas.requestRenderAll();
-    }
 
-    // function cloneObject(eventData, transform) {
-    //     var target = transform.target;
-    //     var canvas = target.canvas;
-    //     target.clone(function(cloned) {
-    //       cloned.left += 10;
-    //       cloned.top += 10;
-    //       canvas.add(cloned);
-    // });
-    
-    function renderIcon(ctx, left, top, styleOverride, fabricObject) {
+
+function deleteObject(eventData, transform) {
+    var target = transform.target;
+    var canvas = target.canvas;
+    canvas.remove(target);
+    canvas.requestRenderAll();
+}
+
+// function cloneObject(eventData, transform) {
+//     var target = transform.target;
+//     var canvas = target.canvas;
+//     target.clone(function(cloned) {
+//       cloned.left += 10;
+//       cloned.top += 10;
+//       canvas.add(cloned);
+// });
+
+function renderIcon(ctx, left, top, styleOverride, fabricObject) {
     var size = this.cornerSize;
     ctx.save();
     ctx.translate(left, top);
     ctx.rotate(fabric.util.degreesToRadians(fabricObject.angle));
-    ctx.drawImage(img, -size/2, -size/2, size, size);
+    ctx.drawImage(img, -size / 2, -size / 2, size, size);
     ctx.restore();
-    }
+}
 
-  
+
 
 const download = (canvas) => {
     const dataURL = canvas.toDataURL({
@@ -121,7 +122,7 @@ const download = (canvas) => {
         format: 'png',
     });
     const link = document.createElement('a');
-    link.download = 'image.png';
+    link.download = 'shapeKit.png';
     link.href = dataURL;
     document.body.appendChild(link);
     link.click();
@@ -131,7 +132,7 @@ const download = (canvas) => {
 
 const download_noBackground = (canvas) => {
     console.log("second one")
-    back = canvas.backgroundImage
+    backImage = canvas.backgroundImage
     canvas.backgroundImage = null
     canvas.renderAll()
     const dataURL = canvas.toDataURL({
@@ -142,12 +143,12 @@ const download_noBackground = (canvas) => {
         format: 'png',
     });
     const link = document.createElement('a');
-    link.download = 'image.png';
+    link.download = 'shapeKit.png';
     link.href = dataURL;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
-    canvas.backgroundImage = back
+    canvas.backgroundImage = backImage
     canvas.renderAll()
 
 }
@@ -355,7 +356,7 @@ function addRandomShape(canvas) {
 const addRandomShapeButton = document.getElementById('addRandomShape');
 addRandomShapeButton.addEventListener('click', () => addRandomShape(canvas));
 
-document.addEventListener("keydown", function(event) {
+document.addEventListener("keydown", function (event) {
     // Check if the pressed key is "Delete"
     if (event.key === 'Delete') {
         // Perform your undo action here
@@ -363,10 +364,24 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
+function toggleFilter(canvas) {
+    if (canvas.backgroundImage.filters.length === 0) {
+        var bw = new fabric.Image.filters.BlackWhite();
+        canvas.backgroundImage.filters.push(bw);
+        canvas.backgroundImage.applyFilters();
+        canvas.renderAll()
+    }
+    else {
+        canvas.backgroundImage.filters = []
+        canvas.backgroundImage.applyFilters();
+        canvas.renderAll()
+    }
+
+}
 
 // var imageURL = "https://s1.1zoom.me/big0/152/Foxes_Black_background_Tongue_Snout_Screaming_523460_1280x853.jpg";
 const canvas = initCanvas("canvas");
-
+let backImage = canvas.backgroundImage;
 jscolor.trigger('input change');
 
 
