@@ -11,6 +11,18 @@ const initCanvas = (id) => {
 }
 
 const setBackgroundImage = (url, canvas) => {
+    if (url.height > url.width) {
+        canvas.setWidth(500)
+        canvas.setHeight(700)
+        canvas.renderAll()
+    }
+    else if (url.width === url.height) {
+        canvas.setWidth(500)
+    }
+    else {
+        canvas.setWidth(700)
+        canvas.setHeight(500)
+    }
 
     canvas.setBackgroundImage(url, canvas.renderAll.bind(canvas), {
         backgroundImageOpacity: 1,
