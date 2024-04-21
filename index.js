@@ -377,6 +377,8 @@ document.addEventListener("keydown", function (event) {
 });
 
 function toggleFilter(canvas) {
+    let bwToggleBtn = document.getElementById('bw-toggle');
+    bwToggleBtn.classList.toggle('active');
     if (canvas.backgroundImage.filters.length === 0) {
         var bw = new fabric.Image.filters.BlackWhite();
         canvas.backgroundImage.filters.push(bw);
@@ -390,6 +392,99 @@ function toggleFilter(canvas) {
     }
 
 }
+
+document.addEventListener("keydown", function (event) {
+    // Check if the pressed key is "Z" and the command (or control) key is pressed simultaneously
+    if ((event.key === 'z' || event.key === 'Z') && (event.metaKey || event.ctrlKey)) {
+        // Prevent the default browser behavior for "Command + Z" or "Ctrl + Z"
+        event.preventDefault();
+        // Perform your undo action here
+        undoShape(canvas); // Assuming 'canvas' is your canvas object
+    }
+});
+
+// Function to delete selected shape
+function deleteSelectedShape() {
+    let activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        canvas.remove(activeObject);
+        canvas.discardActiveObject().renderAll();
+    }
+}
+
+// Listen for keydown events on the document
+document.addEventListener('keydown', function(event) {
+    // Check if the pressed key is the Delete or Backspace key
+    if (event.key === 'Delete' || event.key === 'Backspace') {
+        // Check if the event is not being handled by an input element
+        if (document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA') {
+            deleteSelectedShape();
+        }
+    }
+});
+
+// Function to copy selected shape
+function copySelectedShape() {
+    let activeObject = canvas.getActiveObject();
+    if (activeObject) {
+        activeObject.clone(function(cloned) {
+            clipboard = cloned;
+        });
+    }
+}
+
+// Function to paste copied shape
+function pasteCopiedShape() {
+    if (clipboard) {
+        clipboard.clone(function(clonedObj) {
+            canvas.discardActiveObject();
+            clonedObj.set({
+                left: clonedObj.left + 10,
+                top: clonedObj.top + 10,
+                evented: true,
+            });
+            if (clonedObj.type === 'activeSelection') {
+                // active selection needs a reference to the canvas.
+                clonedObj.canvas = canvas;
+                clonedObj.forEachObject(function(obj) {
+                    canvas.add(obj);
+                });
+                // this should solve the unselectability
+                clonedObj.setCoords();
+            } else {
+                canvas.add(clonedObj);
+            }
+            clipboard.top += 10;
+            clipboard.left += 10;
+            canvas.setActiveObject(clonedObj);
+            canvas.requestRenderAll();
+        });
+    }
+}
+
+// Add event listener for Ctrl + C or Cmd + C to copy shape
+document.addEventListener('keydown', function(event) {
+    // Check if the pressed key is "C" and the command (or control) key is pressed simultaneously
+    if ((event.key === 'c' || event.key === 'C') && (event.metaKey || event.ctrlKey)) {
+        // Prevent the default browser behavior for "Command + C" or "Ctrl + C"
+        event.preventDefault();
+        // Perform copy action
+        copySelectedShape(); // Assuming 'canvas' is your canvas object
+    }
+});
+
+// Add event listener for Ctrl + V or Cmd + V to paste shape
+document.addEventListener('keydown', function(event) {
+    // Check if the pressed key is "V" and the command (or control) key is pressed simultaneously
+    if ((event.key === 'v' || event.key === 'V') && (event.metaKey || event.ctrlKey)) {
+        // Prevent the default browser behavior for "Command + V" or "Ctrl + V"
+        event.preventDefault();
+        // Perform paste action
+        pasteCopiedShape(); // Assuming 'canvas' is your canvas object
+    }
+});
+
+
 
 // var imageURL = "https://s1.1zoom.me/big0/152/Foxes_Black_background_Tongue_Snout_Screaming_523460_1280x853.jpg";
 const canvas = initCanvas("canvas");
