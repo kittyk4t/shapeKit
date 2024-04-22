@@ -1,36 +1,14 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
     margin: 0;
     padding: 0;
-    background-color: #f5f5f5;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    opacity: 0;
-    animation: fade-in 1s forwards;
-}
-
-@keyframes fade-in {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }
 
 h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-    opacity: 0;
-    animation: slide-up 1s forwards 0.5s;
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
 }
 
 button,
@@ -41,20 +19,20 @@ input[type="file"],
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px; 
+    padding: 8px 16px;
     margin: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
-    font-size: 15px;
-    width: 180px; 
-    box-sizing: border-box; 
+    font-size: 14px;
+    width: 180px;
+    box-sizing: border-box;
 }
 
 input[type="file"] {
-    padding: 8px 16px; /* Adjust padding to make it smaller */
-    font-size: 14px; /* Adjust font size to make it smaller */
+    padding: 8px 10px;
+    font-size: 14px;
+    width: 100%;
 }
-
 
 button:hover,
 input[type="file"]:hover,
@@ -73,8 +51,7 @@ canvas {
     border: 2px solid #ccc;
     border-radius: 5px;
     margin-bottom: 20px;
-    opacity: 0;
-    animation: slide-up 1s forwards 0.7s;
+    max-width: 100%; /* Ensure canvas does not overflow on small screens */
 }
 
 .strokeWeight-container,
@@ -82,7 +59,7 @@ canvas {
 .controls-container,
 .download-container,
 .upload-container {
-    position: absolute;
+    position: relative;
     left: 10px;
 }
 
@@ -96,27 +73,24 @@ canvas {
     transform: translateY(-50%);
 }
 
-
 .controls-container {
     position: absolute;
     top: 65%;
     left: 10px;
     transform: translateY(-50%);
     display: flex;
-    justify-content: space-between; /* Adjust alignment */
+    justify-content: space-between;
     flex-direction: row;
-    padding: 0 5px; /* Add padding to create space */
+    padding: 0 5px;
 }
 
 .controls-container > * {
-    flex: 0 0 auto; /* Prevent buttons from shrinking */
-    margin-left: 5px; /* Adjust spacing between elements if needed */
-    padding: 8px 9px; /* Adjust padding to make buttons smaller */
-    font-size: 14px; /* Adjust font size to make buttons smaller */
-    width: auto; /* Reset the width to let the content determine the width */
+    flex: 0 0 auto;
+    margin-left: 5px;
+    padding: 8px 10px;
+    font-size: 14px;
+    width: auto;
 }
-
-
 
 .download-container {
     top: 75%;
@@ -142,6 +116,16 @@ canvas {
         top: auto;
         left: auto;
         transform: none;
+        width: 100%;
+    }
+
+    input[type="file"] {
+        width: calc(100% - 20px);
+    }
+
+    button,
+    input[type="file"],
+    .toggle-button {
         width: 100%;
     }
 }
