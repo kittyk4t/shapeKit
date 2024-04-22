@@ -1,0 +1,114 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    font-family: Arial, sans-serif;
+    color: #333;
+    text-align: center;
+}
+
+button, input[type="file"] {
+    display: block;
+    background-color: #897f7a;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 15px;
+}
+
+button:hover, input[type="file"]:hover {
+    background-color: #9755cd;
+}
+
+.canvas-container {
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+canvas {
+    display: block;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.strokeWeight-container {
+    position: absolute;
+    top: 18%;
+    left: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.shapeTool-container {
+    position: absolute;
+    top: 40%;
+    left: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+}
+.controls-container {
+    position: absolute;
+    top: 65%;
+    left: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
+.controls-container > * {
+    flex: 2; /* Distribute available space equally among children */
+    margin-left: 5px; /* Adjust spacing between elements if needed */
+}
+
+.download-container {
+    position: absolute;
+    top: 75%;
+    left: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+}
+.upload-container {
+    position: absolute;
+    top: 10%;
+    left: 10px;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+}
+
+/* CSS for the BW Toggle Button */
+.toggle-button {
+    background-color: #897f7a;
+    color: #fff;
+    border: none;
+    padding: 8px 20px;
+    margin: 5px;
+    cursor: pointer;
+    font-size: 15px;
+    transition: background-color 0.3s;
+    position: relative; /* Positioning for the check mark */
+}
+
+.toggle-button:hover {
+    background-color: #5cb85c;
+}
+
+.toggle-button.active {
+    background-color: #5cb85c; /* Green color when active */
+}
