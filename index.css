@@ -11,20 +11,32 @@ h1 {
     text-align: center;
 }
 
-button, input[type="file"] {
+button,
+input[type="file"],
+.toggle-button {
     display: block;
     background-color: #897f7a;
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 10px 20px; 
     margin: 5px;
     cursor: pointer;
     transition: background-color 0.3s;
     font-size: 15px;
+    width: 180px; 
+    box-sizing: border-box; 
 }
 
-button:hover, input[type="file"]:hover {
+input[type="file"] {
+    padding: 8px 16px; /* Adjust padding to make it smaller */
+    font-size: 14px; /* Adjust font size to make it smaller */
+}
+
+
+button:hover,
+input[type="file"]:hover,
+.toggle-button:hover {
     background-color: #9755cd;
 }
 
@@ -41,74 +53,71 @@ canvas {
     margin-bottom: 20px;
 }
 
-.strokeWeight-container {
+.strokeWeight-container,
+.shapeTool-container,
+.controls-container,
+.download-container,
+.upload-container {
     position: absolute;
-    top: 18%;
     left: 10px;
-    transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
 }
 
+.strokeWeight-container {
+    top: 18%;
+    transform: translateY(-50%);
+}
 
 .shapeTool-container {
-    position: absolute;
     top: 40%;
-    left: 10px;
     transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
 }
+
+
 .controls-container {
     position: absolute;
     top: 65%;
     left: 10px;
     transform: translateY(-50%);
     display: flex;
-    justify-content: flex-end;
+    justify-content: space-between; /* Adjust alignment */
     flex-direction: row;
+    padding: 0 5px; /* Add padding to create space */
 }
 
 .controls-container > * {
-    flex: 2; /* Distribute available space equally among children */
+    flex: 0 0 auto; /* Prevent buttons from shrinking */
     margin-left: 5px; /* Adjust spacing between elements if needed */
+    padding: 8px 9px; /* Adjust padding to make buttons smaller */
+    font-size: 14px; /* Adjust font size to make buttons smaller */
+    width: auto; /* Reset the width to let the content determine the width */
 }
+
+
 
 .download-container {
-    position: absolute;
     top: 75%;
-    left: 10px;
     transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
 }
+
 .upload-container {
-    position: absolute;
     top: 10%;
-    left: 10px;
     transform: translateY(-50%);
-    display: flex;
-    flex-direction: column;
 }
 
-/* CSS for the BW Toggle Button */
-.toggle-button {
-    background-color: #897f7a;
-    color: #fff;
-    border: none;
-    padding: 8px 20px;
-    margin: 5px;
-    cursor: pointer;
-    font-size: 15px;
-    transition: background-color 0.3s;
-    position: relative; /* Positioning for the check mark */
-}
+@media screen and (max-width: 768px) {
+    .canvas-container {
+        width: 90%;
+    }
 
-.toggle-button:hover {
-    background-color: #5cb85c;
-}
-
-.toggle-button.active {
-    background-color: #5cb85c; /* Green color when active */
+    .strokeWeight-container,
+    .shapeTool-container,
+    .controls-container,
+    .download-container,
+    .upload-container {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        width: 100%;
+    }
 }
