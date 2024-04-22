@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="shapeKit.css">
+    <title>ShapeKit</title>
+</head>
+<body>
+
+<title>Footer Positioning</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* Ensure the body takes up at least the height of the viewport */
+    position: relative; /* Make sure the body serves as a reference for positioning */
+  }
+  footer {
+    position: absolute; /* Position the footer absolutely */
+    bottom: 0; /* Place the footer at the bottom of the viewport */
+    width: 100%; /* Make the footer span the entire width */
+    background-color: #f0f0f0; /* Optional: Add a background color */
+    padding: 20px; /* Optional: Add some padding for better aesthetics */
+    text-align: center; /* Optional: Center-align the content */
+  }
+</style>
+</head>
+<body>
+
+<h1>ShapeKit</h1>
+
+<div class="canvas-container">
+    <canvas id="canvas"></canvas>
+    <div class="controls-container">
+      <button onclick="undoShape(canvas)">Undo</button>
+      <button onclick="clearCanvas(canvas)">Clear</button>
+      <button onclick="openHelpPage()">Help</button>
+    </div>
+</div>
+
+<div class="strokeWeight-container">
+  <div>
+    Stroke Weight: <span id="stroke-weight">3</span>
+    <input type="range" id="stroke-weight-slider" min="1" max="20" value="3" oninput="updateStrokeWeight(canvas, this.value)">
+  </div>
+</div>
+
+<div class="shapeTool-container">
+  <button data-jscolor="{format: 'rgba', closeButton: true, shadow: false, value: '#000000', alpha: 1, onChange: 'setShapeColor(this, canvas)'}">
+    Select color </button>
+    <button class="toggle-button" id="bw-toggle" onclick="toggleFilter(canvas)">Toggle BW Filter</button>
+  <button id="addLine">Add Line</button>
+  <button onclick="createRect(canvas)">Rectangle</button>
+  <button onclick="createCirc(canvas)">Circle</button>
+  <button onclick="createTri(canvas)">Triangle</button>
+  
+  <button id="addRandomShape">Add Random Shape</button> <!-- Add this button -->
+  <!-- <button onclick="undoShape(canvas)">Undo Last Shape</button>
+  <button onclick="clearCanvas(canvas)">Clear</button>
+  <button onclick="openHelpPage()">Help</button> -->
+</div>
+
+<!-- <div class="controls-container">
+  <button onclick="undoShape(canvas)">Undo Last Shape</button>
+  <button onclick="clearCanvas(canvas)">Clear</button>
+  <button onclick="openHelpPage()">Help</button>
+</div> -->
+
+<div class="upload-container">
+  <input type="file" id="file-input">
+</div>
+
+<div class="download-container">
+  <button onclick="download(canvas)">Download Canvas</button>
+  <button onclick="download_noBackground(canvas)">Download Canvas [No Background]</button>
+</div>
+
+<script src="lib/jscolor.js"></script>
+<script src="lib/fabric.min.js"></script>
+<script src="shapeKit.js"></script>
+
+<footer>
+  <p>&copy; 2024 ShapeKit</p>
+</footer>
+</body>
+
+</html>
