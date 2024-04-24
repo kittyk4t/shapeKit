@@ -1,131 +1,80 @@
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+/* index.css */
+
+/* Resetting default margin and padding */
+* {
     margin: 0;
     padding: 0;
-}
-
-h1 {
-    font-family: Arial, sans-serif;
-    color: #333;
-    text-align: center;
-}
-
-button,
-input[type="file"],
-.toggle-button {
-    display: block;
-    background-color: #897f7a;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 16px;
-    margin: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 14px;
-    width: 180px;
     box-sizing: border-box;
 }
 
-input[type="file"] {
-    padding: 8px 10px;
-    font-size: 14px;
-    width: 100%;
+/* Setting background and text colors */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
 }
 
-button:hover,
-input[type="file"]:hover,
-.toggle-button:hover {
-    background-color: #9755cd;
-}
-
-.canvas-container {
-    width: 80%;
-    margin: 0 auto;
+/* Styling container */
+.container {
+    max-width: 600px;
+    margin: 50px auto;
     text-align: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 1s ease-out;
 }
 
-canvas {
-    display: block;
-    border: 2px solid #ccc;
-    border-radius: 5px;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Styling heading */
+h1 {
+    font-size: 48px;
     margin-bottom: 20px;
-    max-width: 100%; /* Ensure canvas does not overflow on small screens */
+    color: #333;
+    animation: slideInFromTop 1s ease-out;
 }
 
-.strokeWeight-container,
-.shapeTool-container,
-.controls-container,
-.download-container,
-.upload-container {
-    position: relative;
-    left: 10px;
-}
-
-.strokeWeight-container {
-    top: 18%;
-    transform: translateY(-50%);
-}
-
-.shapeTool-container {
-    top: 40%;
-    transform: translateY(-50%);
-}
-
-.controls-container {
-    position: absolute;
-    top: 65%;
-    left: 10px;
-    transform: translateY(-50%);
-    display: flex;
-    justify-content: space-between;
-    flex-direction: row;
-    padding: 0 5px;
-}
-
-.controls-container > * {
-    flex: 0 0 auto;
-    margin-left: 5px;
-    padding: 8px 10px;
-    font-size: 14px;
-    width: auto;
-}
-
-.download-container {
-    top: 75%;
-    transform: translateY(-50%);
-}
-
-.upload-container {
-    top: 10%;
-    transform: translateY(-50%);
-}
-
-@media screen and (max-width: 768px) {
-    .canvas-container {
-        width: 90%;
+@keyframes slideInFromTop {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
     }
-
-    .strokeWeight-container,
-    .shapeTool-container,
-    .controls-container,
-    .download-container,
-    .upload-container {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-        width: 100%;
-    }
-
-    input[type="file"] {
-        width: calc(100% - 20px);
-    }
-
-    button,
-    input[type="file"],
-    .toggle-button {
-        width: 100%;
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
+
+/* Styling paragraph */
+p {
+    font-size: 20px;
+    line-height: 1.6;
+    color: #666;
+    animation: fadeIn 1s ease-out;
+}
+
+/* Styling button */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
