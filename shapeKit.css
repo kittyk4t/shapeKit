@@ -66,12 +66,13 @@ canvas {
     left: 50%; /* Position from the center */
     transform: translateX(-50%) translateY(-50%); /* Center horizontally and vertically */
     width: auto; /* Let the content determine the width */
-    max-width: 180px; /* Set maximum width to match the buttons */
+    max-width: 25px; /* Set maximum width to match the buttons */
 }
 
 .strokeWeight-container input[type="range"] {
     width: 100%; /* Make the range input fill the container */
 }
+
 
 
 .controls-container > * {

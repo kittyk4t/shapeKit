@@ -5,15 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welcome to Shape Kit</title>
     <link rel="stylesheet" href="index.css">
+    <style>
+        .center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Optional: Centers vertically within the viewport */
+        }
+        .center img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Welcome to Shape Kit</h1>
         <!-- <p></p> -->
         <button onclick="window.location.href = 'shapeKit.html';">Go to ShapeKit</button>
-
     </div>
-  
+
+    <!-- Centered image -->
+    <div class="center">
+        <img src="Ada Lovelace Image.png" alt="Description of your image">
+    </div>
 
     <script src="index.js"></script>
 </body>

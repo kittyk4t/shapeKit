@@ -1,5 +1,3 @@
-/* index.css */
-
 /* Resetting default margin and padding */
 * {
     margin: 0;
@@ -9,7 +7,7 @@
 
 /* Setting background and text colors */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Helvetica, Arial, sans-serif; /* Changed font-family to Helvetica */
     background-color: #f0f0f0;
     color: #333;
 }
@@ -64,7 +62,7 @@ p {
 
 /* Styling button */
 button {
-    background-color: #4CAF50;
+    background-color: #8c25b5;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
@@ -75,6 +73,5 @@ button {
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: #4a0c52;
 }
-
